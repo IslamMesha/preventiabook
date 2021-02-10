@@ -1,0 +1,1156 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /social/posts/:
+    get:
+      operationId: listPosts
+      description: A simple ViewSet for viewing and editing posts.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Post'
+          description: ''
+      tags:
+      - social
+    post:
+      operationId: createPost
+      description: A simple ViewSet for viewing and editing posts.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Post'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: ''
+      tags:
+      - social
+  /social/posts/{id}/:
+    get:
+      operationId: retrievePost
+      description: A simple ViewSet for viewing and editing posts.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this post.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: ''
+      tags:
+      - social
+    put:
+      operationId: updatePost
+      description: A simple ViewSet for viewing and editing posts.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this post.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Post'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: ''
+      tags:
+      - social
+    patch:
+      operationId: partialUpdatePost
+      description: A simple ViewSet for viewing and editing posts.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this post.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Post'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: ''
+      tags:
+      - social
+    delete:
+      operationId: destroyPost
+      description: A simple ViewSet for viewing and editing posts.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this post.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - social
+  /social/likes/:
+    get:
+      operationId: listLikes
+      description: A simple ViewSet to like and dislike posts.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Like'
+          description: ''
+      tags:
+      - social
+    post:
+      operationId: createLike
+      description: A simple ViewSet to like and dislike posts.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Like'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Like'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Like'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Like'
+          description: ''
+      tags:
+      - social
+  /social/likes/{id}/:
+    get:
+      operationId: retrieveLike
+      description: A simple ViewSet to like and dislike posts.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this like.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Like'
+          description: ''
+      tags:
+      - social
+    put:
+      operationId: updateLike
+      description: A simple ViewSet to like and dislike posts.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this like.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Like'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Like'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Like'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Like'
+          description: ''
+      tags:
+      - social
+    patch:
+      operationId: partialUpdateLike
+      description: A simple ViewSet to like and dislike posts.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this like.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Like'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Like'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Like'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Like'
+          description: ''
+      tags:
+      - social
+    delete:
+      operationId: destroyLike
+      description: A simple ViewSet to like and dislike posts.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this like.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - social
+  /social/users/:
+    get:
+      operationId: listUsers
+      description: A simple ViewSet for viewing, activating and deactivating accounts
+        (Users).
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Author'
+          description: ''
+      tags:
+      - social
+    post:
+      operationId: createUser
+      description: A simple ViewSet for viewing, activating and deactivating accounts
+        (Users).
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorStatus'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthorStatus'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AuthorStatus'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorStatus'
+          description: ''
+      tags:
+      - social
+  /social/users/{id}/:
+    get:
+      operationId: retrieveUser
+      description: A simple ViewSet for viewing, activating and deactivating accounts
+        (Users).
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+          description: ''
+      tags:
+      - social
+    put:
+      operationId: updateUser
+      description: A simple ViewSet for viewing, activating and deactivating accounts
+        (Users).
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorStatus'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthorStatus'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AuthorStatus'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorStatus'
+          description: ''
+      tags:
+      - social
+    patch:
+      operationId: partialUpdateUser
+      description: A simple ViewSet for viewing, activating and deactivating accounts
+        (Users).
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorStatus'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthorStatus'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AuthorStatus'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorStatus'
+          description: ''
+      tags:
+      - social
+    delete:
+      operationId: destroyUser
+      description: A simple ViewSet for viewing, activating and deactivating accounts
+        (Users).
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - social
+  /social/comments/:
+    get:
+      operationId: listComments
+      description: A simple ViewSet for viewing and editing comments.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Comment'
+          description: ''
+      tags:
+      - social
+    post:
+      operationId: createComment
+      description: A simple ViewSet for viewing and editing comments.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Comment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Comment'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+      tags:
+      - social
+  /social/comments/{id}/:
+    get:
+      operationId: retrieveComment
+      description: A simple ViewSet for viewing and editing comments.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this comment.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+      tags:
+      - social
+    put:
+      operationId: updateComment
+      description: A simple ViewSet for viewing and editing comments.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this comment.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Comment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Comment'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+      tags:
+      - social
+    patch:
+      operationId: partialUpdateComment
+      description: A simple ViewSet for viewing and editing comments.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this comment.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Comment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Comment'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+      tags:
+      - social
+    delete:
+      operationId: destroyComment
+      description: A simple ViewSet for viewing and editing comments.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this comment.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - social
+  /friends/friends/:
+    get:
+      operationId: listFriends
+      description: A simple ViewSet for reading friends.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Friend'
+          description: ''
+      tags:
+      - friends
+  /friends/friends/{id}/:
+    get:
+      operationId: retrieveFriend
+      description: A simple ViewSet for reading friends.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this friend.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Friend'
+          description: ''
+      tags:
+      - friends
+  /friends/requests/:
+    get:
+      operationId: listFriendshipRequests
+      description: A simple ViewSet for viewing, send, accept and reject friend request.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FriendshipRequest'
+          description: ''
+      tags:
+      - friends
+    post:
+      operationId: createFriendshipRequest
+      description: A simple ViewSet for viewing, send, accept and reject friend request.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FriendshipRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FriendshipRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FriendshipRequest'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FriendshipRequest'
+          description: ''
+      tags:
+      - friends
+  /friends/requests/{id}/:
+    get:
+      operationId: retrieveFriendshipRequest
+      description: A simple ViewSet for viewing, send, accept and reject friend request.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this friendship request.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FriendshipRequest'
+          description: ''
+      tags:
+      - friends
+    put:
+      operationId: updateFriendshipRequest
+      description: A simple ViewSet for viewing, send, accept and reject friend request.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this friendship request.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FriendshipRequestUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FriendshipRequestUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FriendshipRequestUpdate'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FriendshipRequestUpdate'
+          description: ''
+      tags:
+      - friends
+    patch:
+      operationId: partialUpdateFriendshipRequest
+      description: A simple ViewSet for viewing, send, accept and reject friend request.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this friendship request.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FriendshipRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FriendshipRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FriendshipRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FriendshipRequest'
+          description: ''
+      tags:
+      - friends
+    delete:
+      operationId: destroyFriendshipRequest
+      description: A simple ViewSet for viewing, send, accept and reject friend request.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this friendship request.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - friends
+  /social/register/:
+    post:
+      operationId: createregister
+      description: A simple function based view to register new users.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/openapi+json:
+              schema: {}
+            text/html:
+              schema: {}
+          description: ''
+      tags:
+      - social
+  /social/login/:
+    post:
+      operationId: createAuthToken
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+          description: ''
+      tags:
+      - social
+components:
+  schemas:
+    Post:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        comments:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                readOnly: true
+              text:
+                type: string
+              created_date:
+                type: string
+                format: date-time
+              post:
+                type: integer
+              author:
+                type: integer
+            required:
+            - post
+            - author
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        text:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+          nullable: true
+        published_date:
+          type: string
+          format: date-time
+          nullable: true
+        attachment:
+          type: string
+          format: binary
+          nullable: true
+        author:
+          type: integer
+      required:
+      - title
+      - text
+      - author
+    Like:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        post:
+          type: integer
+        user:
+          type: integer
+      required:
+      - post
+      - user
+    Author:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+\z
+          maxLength: 150
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+      required:
+      - username
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        text:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        post:
+          type: integer
+        author:
+          type: integer
+      required:
+      - post
+      - author
+    Friend:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        to_user:
+          type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            username:
+              type: string
+              description: Required. 150 characters or fewer. Letters, digits and
+                @/./+/-/_ only.
+              pattern: ^[\w.@+-]+\z
+              maxLength: 150
+            first_name:
+              type: string
+              maxLength: 150
+            last_name:
+              type: string
+              maxLength: 150
+            email:
+              type: string
+              format: email
+              maxLength: 254
+          required:
+          - username
+        from_user:
+          type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            username:
+              type: string
+              description: Required. 150 characters or fewer. Letters, digits and
+                @/./+/-/_ only.
+              pattern: ^[\w.@+-]+\z
+              maxLength: 150
+            first_name:
+              type: string
+              maxLength: 150
+            last_name:
+              type: string
+              maxLength: 150
+            email:
+              type: string
+              format: email
+              maxLength: 254
+          required:
+          - username
+        created:
+          type: string
+          format: date-time
+      required:
+      - to_user
+      - from_user
+    FriendshipRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        message:
+          type: string
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        rejected:
+          type: string
+          format: date-time
+          readOnly: true
+        viewed:
+          type: string
+          format: date-time
+          readOnly: true
+        from_user:
+          type: integer
+        to_user:
+          type: integer
+      required:
+      - from_user
+      - to_user
+    AuthToken:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        token:
+          type: string
+          readOnly: true
+      required:
+      - username
+      - password
+    AuthorStatus:
+      type: object
+      properties:
+        is_active:
+          type: boolean
+          description: Designates whether this user should be treated as active. Unselect
+            this instead of deleting accounts.
+    FriendshipRequestUpdate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        decision:
+          enum:
+          - View
+          - Accept
+          - Reject
+          type: string
+          writeOnly: true
+        message:
+          type: string
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        rejected:
+          type: string
+          format: date-time
+          readOnly: true
+        viewed:
+          type: string
+          format: date-time
+          readOnly: true
+        from_user:
+          type: integer
+        to_user:
+          type: integer
+      required:
+      - from_user
+      - to_user
